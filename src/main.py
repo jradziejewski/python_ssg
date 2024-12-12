@@ -1,16 +1,21 @@
 from textnode import TextNode, TextType
-from htmlnode import HTMLNode, LeafNode
+from htmlnode import HTMLNode, LeafNode, ParentNode
 
 
 def main():
-    node = TextNode("This is a test node", TextType.BOLD_TEXT, "https://boot.dev/")
-    htmlnode = HTMLNode(props={"href": "https://www.google.com", "target": "_blank"})
-    print(htmlnode.props_to_html())
-    print(htmlnode)
+    leaf_1 = LeafNode("b", "bold text")
+    leaf_2 = LeafNode(None, "text")
+    parent = ParentNode(
+        "h1",
+        [
+            leaf_1,
+            leaf_2,
+            LeafNode("i", "italic text"),
+            ParentNode("h2", [LeafNode("b", "bold"), LeafNode("i", "italic")]),
+        ],
+    )
 
-    leaf = LeafNode("a", value="Dupa")
-
-    print(leaf.to_html())
+    print(parent.to_html())
 
 
 main()
