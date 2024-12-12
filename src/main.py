@@ -1,21 +1,14 @@
 from textnode import TextNode, TextType
-from htmlnode import HTMLNode, LeafNode, ParentNode
+from htmlnode import HTMLNode, LeafNode
+from utils import text_node_to_html_node
 
 
 def main():
-    leaf_1 = LeafNode("b", "bold text")
-    leaf_2 = LeafNode(None, "text")
-    parent = ParentNode(
-        "h1",
-        [
-            leaf_1,
-            leaf_2,
-            LeafNode("i", "italic text"),
-            ParentNode("h2", [LeafNode("b", "bold"), LeafNode("i", "italic")]),
-        ],
-    )
+    link_node = TextNode("some link", TextType.LINKS, "https://www.google.com/")
+    img_node = TextNode("some image", TextType.IMAGES, "https://example.com/image.png")
 
-    print(parent.to_html())
+    print(text_node_to_html_node(link_node))
+    print(text_node_to_html_node(img_node))
 
 
 main()

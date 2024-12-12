@@ -1,9 +1,10 @@
 import unittest
 
 from htmlnode import HTMLNode, LeafNode, ParentNode
+from textnode import TextNode, TextType
 
 
-class TestTextNode(unittest.TestCase):
+class TestHTMLNode(unittest.TestCase):
     def test_props_to_html(self):
         node = HTMLNode(props={"href": "https://www.google.com", "target": "_blank"})
 
