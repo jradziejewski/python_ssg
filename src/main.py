@@ -1,18 +1,22 @@
 from textnode import TextNode, TextType
 from htmlnode import HTMLNode, LeafNode
-from utils import text_node_to_html_node, split_nodes_delimiter
+from utils import (
+    split_nodes_image,
+    split_nodes_link,
+    text_node_to_html_node,
+    split_nodes_delimiter,
+    extract_markdown_images,
+    extract_markdown_links,
+)
 
 
 def main():
-    node = TextNode("This is text with a `code block` word", TextType.NORMAL_TEXT)
-    node2 = TextNode("This is another text with **bold** text", TextType.NORMAL_TEXT)
-    node3 = TextNode("This has no delimiters", TextType.NORMAL_TEXT)
-    node4 = TextNode("This is **bold** and this is also **bold**", TextType.NORMAL_TEXT)
-    new_nodes = split_nodes_delimiter([node2], "**", TextType.BOLD_TEXT)
-    new_nodes2 = split_nodes_delimiter([node4], "**", TextType.BOLD_TEXT)
+    node = TextNode(
+        "This is text with an image [to boot dev](https://www.boot.dev/image.img) and [to youtube](https://www.youtube.com/@bootdotdev) asdf",
+        TextType.NORMAL_TEXT,
+    )
 
-    print(new_nodes)
-    print(new_nodes2)
+    print(split_nodes_link([node]))
 
 
 main()
