@@ -7,16 +7,14 @@ from utils import (
     split_nodes_delimiter,
     extract_markdown_images,
     extract_markdown_links,
+    text_to_textnodes,
 )
 
 
 def main():
-    node = TextNode(
-        "This is text with an image [to boot dev](https://www.boot.dev/image.img) and [to youtube](https://www.youtube.com/@bootdotdev) asdf",
-        TextType.NORMAL_TEXT,
-    )
+    text = "This is **text** with an *italic* word and a `code block` and an ![obi wan image](https://i.imgur.com/fJRm4Vk.jpeg) and a [link](https://boot.dev)"
 
-    print(split_nodes_link([node]))
+    print(text_to_textnodes(text))
 
 
 main()
