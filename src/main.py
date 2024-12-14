@@ -1,20 +1,25 @@
-from textnode import TextNode, TextType
-from htmlnode import HTMLNode, LeafNode
-from utils import (
-    split_nodes_image,
-    split_nodes_link,
-    text_node_to_html_node,
-    split_nodes_delimiter,
-    extract_markdown_images,
-    extract_markdown_links,
-    text_to_textnodes,
-)
+from utils import markdown_to_blocks
 
 
 def main():
-    text = "This is **text** with an *italic* word and a `code block` and an ![obi wan image](https://i.imgur.com/fJRm4Vk.jpeg) and a [link](https://boot.dev)"
+    markdown_text = """# This is a heading
 
-    print(text_to_textnodes(text))
 
+This is a paragraph of text. It has some **bold** and *italic* words inside of it.
+
+
+* This is the first list item in a list block
+* This is a list item
+* This is another list item
+"""
+    markdown_text = """
+
+# Heading
+
+Paragraph
+
+"""    
+    blocks = markdown_to_blocks(markdown_text)
+    print(blocks)
 
 main()

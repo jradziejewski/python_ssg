@@ -1,7 +1,7 @@
 import unittest
 from htmlnode import LeafNode
 from textnode import TextNode, TextType
-from utils import text_node_to_html_node
+from utils import markdown_to_blocks, text_node_to_html_node
 
 
 class TestUtils(unittest.TestCase):
@@ -31,3 +31,52 @@ class TestUtils(unittest.TestCase):
             text_node_to_html_node(link_node),
             LeafNode("a", "some link", {"href": "https://www.google.com/"}),
         )
+
+    def test_markdown_to_blocks(self):
+
+        markdown_text = """# This is a heading
+
+This is a paragraph of text. It has some **bold** and *italic* words inside of it.
+
+* This is the first list item in a list block
+* This is a list item
+* This is another list item
+"""
+
+        self.assertEqual(markdown_to_blocks(markdown_text), ['# This is a heading', 'This is a paragraph of text. It has some **bold** and *italic* words inside of it.', '* This is the first list item in a list block\n* This is a list item\n* This is another list item'])
+
+    def test_markdown_to_blocks_empty_lines(self):
+
+        markdown_text = """# This is a heading
+
+
+This is a paragraph of text. It has some **bold** and *italic* words inside of it.
+
+
+* This is the first list item in a list block
+* This is a list item
+* This is another list item
+"""
+
+        self.assertEqual(markdown_to_blocks(markdown_text), ['# This is a heading', 'This is a paragraph of text. It has some **bold** and *italic* words inside of it.', '* This is the first list item in a list block\n* This is a list item\n* This is another list item'])
+
+    def test_markdown_to_blocks_traling_spaces(self):
+        markdown_text = """# Heading
+
+   
+Paragraph with spaces before and after   
+  
+* List"""
+
+        self.assertEqual(markdown_to_blocks(markdown_text), ["# Heading", "Paragraph with spaces before and after", "* List"])
+
+    def test_markdown_to_blocks_trailing_newlines(self):
+        markdown_text = """
+
+# Heading
+
+Paragraph
+
+"""
+
+        self.assertEqual(markdown_to_blocks(markdown_text), ["# Heading", "Paragraph"])

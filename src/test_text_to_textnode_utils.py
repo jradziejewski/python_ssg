@@ -10,7 +10,7 @@ from text_to_textnode_utils import (
 )
 
 
-class TestUtils(unittest.TestCase):
+class TestTextToNodesUtils(unittest.TestCase):
     def test_text_to_textnodes_no_images_links(self):
         text = "This is **text** with an *italic* word and a `code block`"
 
