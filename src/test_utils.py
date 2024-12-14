@@ -1,7 +1,7 @@
 import unittest
 from htmlnode import LeafNode
 from textnode import TextNode, TextType
-from utils import markdown_to_blocks, text_node_to_html_node
+from utils import block_to_block_type, markdown_to_blocks, text_node_to_html_node
 
 
 class TestUtils(unittest.TestCase):
@@ -31,6 +31,49 @@ class TestUtils(unittest.TestCase):
             text_node_to_html_node(link_node),
             LeafNode("a", "some link", {"href": "https://www.google.com/"}),
         )
+
+    def test_block_to_block_type_code(self):
+        block = "```\nthis is code block\n\n```"
+        block_2 = "```this is not a code block```"
+
+        self.assertEqual(block_to_block_type(block), "code")
+        self.assertEqual(block_to_block_type(block_2), "paragraph")
+
+    def test_block_to_block_type_heading(self):
+        block = "# this is heading"
+        block_2 = "#######this is not heading"
+        block_3 = "##this is also not heading"
+
+        self.assertEqual(block_to_block_type(block), "heading")
+        self.assertEqual(block_to_block_type(block_2), "paragraph")
+        self.assertEqual(block_to_block_type(block_3), "paragraph")
+
+    def test_block_to_block_type_quote(self):
+        block = "> this is quote"
+        block_2 = "> this is also\n>some\n>quote"
+        block_3 = "> this is\nnot a\n>quote"
+
+        self.assertEqual(block_to_block_type(block), "quote")
+        self.assertEqual(block_to_block_type(block_2), "quote")
+        self.assertEqual(block_to_block_type(block_3), "paragraph")
+
+    def test_block_to_block_type_ul(self):
+        block = "* this is\n* unordered list"
+        block_2 = "* this is\n- also a \n* unordered list"
+        block_3 = "* this is\nnot a\n- unordered list"
+
+        self.assertEqual(block_to_block_type(block), "unordered_list")
+        self.assertEqual(block_to_block_type(block_2), "unordered_list")
+        self.assertEqual(block_to_block_type(block_3), "paragraph")
+
+    def test_block_to_block_type_ol(self):
+        block = "1. this is\n2. ordered list"
+        block_2 = "1. this is\n2. also a \n3. ordered list"
+        block_3 = "1. this is\n2. not a\n4. ordered list"
+
+        self.assertEqual(block_to_block_type(block), "ordered_list")
+        self.assertEqual(block_to_block_type(block_2), "ordered_list")
+        self.assertEqual(block_to_block_type(block_3), "paragraph")
 
     def test_markdown_to_blocks(self):
 
