@@ -84,9 +84,13 @@ This is a paragraph of text. It has some **bold** and *italic* words inside of i
 * This is the first list item in a list block
 * This is a list item
 * This is another list item
+
+> This should be 
+> A quote
+> *dumbass*
 """
 
-        self.assertEqual(markdown_to_blocks(markdown_text), ['# This is a heading', 'This is a paragraph of text. It has some **bold** and *italic* words inside of it.', '* This is the first list item in a list block\n* This is a list item\n* This is another list item'])
+        self.assertEqual(markdown_to_blocks(markdown_text), ['# This is a heading', 'This is a paragraph of text. It has some **bold** and *italic* words inside of it.', '* This is the first list item in a list block\n* This is a list item\n* This is another list item', "> This should be \n> A quote\n> *dumbass*"])
 
     def test_markdown_to_blocks_empty_lines(self):
 
