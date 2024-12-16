@@ -67,7 +67,7 @@ def ol_to_html_node(block):
     return ParentNode("ol", subnodes)
 
 def quote_to_html_node(block):
-    lines = "\n".join(map(lambda x: x.lstrip(">"), block.split("\n")))
+    lines = "\n".join(map(lambda x: x.lstrip(">").strip(), block.split("\n")))
 
 
     children = text_to_children(lines)
