@@ -50,8 +50,11 @@ def ul_to_html_node(block):
     lines = block.split("\n")
     subnodes = []
     for line in lines:
-        line_text = line.lstrip(r"[*-] ")
-        children = text_to_children(line_text)
+        if line.startswith("*"):
+            line = line.lstrip("* ")
+        elif line.startswith("-"):
+            line = line.lstrip("- ")
+        children = text_to_children(line)
         subnodes.append(ParentNode("li", children))
 
     return ParentNode("ul", subnodes)
