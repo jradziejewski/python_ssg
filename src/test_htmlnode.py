@@ -9,7 +9,7 @@ class TestHTMLNode(unittest.TestCase):
         node = HTMLNode(props={"href": "https://www.google.com", "target": "_blank"})
 
         self.assertEqual(
-            node.props_to_html(), 'href="https://www.google.com" target="_blank"'
+            node.props_to_html(), ' href="https://www.google.com" target="_blank"'
         )
 
     def test_repr(self):

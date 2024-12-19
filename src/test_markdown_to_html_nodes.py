@@ -39,11 +39,11 @@ And, of course, something to test
 1. should be a paragraph
 > but who knows what it's gonna be?
 """
-        expected_output = """<div><h1>This is a document</h1><p>It's a shitty document, but we'll use it as example.</p><ul><li>It has some unordered lists.</li><li>They make no sense.</li><li>But it's ok.</li></ul><ol><li>The</li><li>Ordered</li><li>List</li><li>Is</li><li>Also</li><li>Here.</li></ol><pre><blockquote> If a man knows not to which port he sails
- Or something like that, I don't remember
+        expected_output = """<div><h1>This is a document</h1><p>It's a shitty document, but we'll use it as example.</p><ul><li>It has some unordered lists.</li><li>They make no sense.</li><li>But it's ok.</li></ul><ol><li>The</li><li>Ordered</li><li>List</li><li>Is</li><li>Also</li><li>Here.</li></ol><pre><blockquote>If a man knows not to which port he sails
+Or something like that, I don't remember
 
- <i>Seneca probably</i></blockquote></pre><p><i>Some italic</i> and <b>bold</b> text we can find here too!</p><pre><code>while True:
-    do</code></pre><p>Here you go with some image: <img></img></p><p>And, of course, something to test
+<i>Seneca probably</i></blockquote></pre><p><i>Some italic</i> and <b>bold</b> text we can find here too!</p><pre><code>while True:
+    do</code></pre><p>Here you go with some image: <img src="https://not-even-an-image.dev/not-image.png" alt="some dumb image"></img></p><p>And, of course, something to test
 - a shitty block that
 1. should be a paragraph
 > but who knows what it's gonna be?</p></div>"""
